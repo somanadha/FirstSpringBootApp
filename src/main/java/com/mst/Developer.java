@@ -1,6 +1,5 @@
 package com.mst;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -11,8 +10,8 @@ public class Developer implements DetailsPrintable {
     private final String name;
     private final byte experienceInYears;
 
-    public Developer(@Autowired @Value("Satya Dev") String name,
-                     @Autowired @Value("28") byte experienceInYears) {
+    public Developer(@Value("Satya Dev") String name,
+                     @Value("28") byte experienceInYears) {
         this.name = name;
         this.experienceInYears = experienceInYears;
     }
