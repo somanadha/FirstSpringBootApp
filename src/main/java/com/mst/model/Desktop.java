@@ -1,5 +1,7 @@
-package com.mst;
+package com.mst.model;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Scope;
@@ -8,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Scope("prototype")
 @Primary
-public final class Desktop extends Computer{
+public final class Desktop extends Computer {
     public Desktop(@Value("HP") String make, @Value ("Pavilion") String model,
                    @Value("AMD Athlon") String cpu,
                    @Value("16") byte cores, @Value("32") byte ramSizeInGB) {
@@ -23,5 +25,17 @@ public final class Desktop extends Computer{
     @Override
     public String toString() {
         return super.toString();
+    }
+
+    @Override
+    public String jacskonSerialize() {
+        String jacksonString="";
+        ObjectMapper jacksonObjectMapper = new ObjectMapper();
+        try {
+            jacksonObjectMapper.writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+        return jacksonString;
     }
 }

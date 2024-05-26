@@ -1,5 +1,7 @@
 package com.mst;
 
+import com.mst.model.FirstSpringBootApp;
+import com.mst.model.interfaces.DetailsPrintable;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -11,4 +13,22 @@ public class App {
         firstSpringBootApp.printDetails();
     }
 
+    public enum Language implements DetailsPrintable {
+        Java, CSharp, CPP, Python, JavaScript;
+
+
+        private Language () {
+
+        }
+
+        @Override
+        public void printDetails() {
+            System.out.println("Developed Using: " + toString());
+        }
+
+        @Override
+        public String toString() {
+            return "{" + name() + "}";
+        }
+    }
 }
