@@ -65,6 +65,6 @@ public class Compiler implements DetailsPrintable, JacksonSerializable {
 
     @Override
     public String toString() {
-        return "{Language: " + language + ", Version: " + version + "}";
+        return jacskonSerialize();
     }
 }

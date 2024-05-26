@@ -34,6 +34,6 @@ public final class Laptop extends Computer {
 
     @Override
     public String toString() {
-        return super.toString();
+        return jacskonSerialize();
     }
 }

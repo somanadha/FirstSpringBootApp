@@ -23,11 +23,6 @@ public final class Desktop extends Computer {
     }
 
     @Override
-    public String toString() {
-        return super.toString();
-    }
-
-    @Override
     public String jacskonSerialize() {
         String jacksonString="";
         ObjectMapper jacksonObjectMapper = new ObjectMapper();
@@ -37,5 +32,10 @@ public final class Desktop extends Computer {
             throw new RuntimeException(e);
         }
         return jacksonString;
+    }
+
+    @Override
+    public String toString() {
+        return jacskonSerialize();
     }
 }

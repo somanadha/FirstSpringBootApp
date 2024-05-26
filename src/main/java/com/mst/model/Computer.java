@@ -73,6 +73,6 @@ public abstract class Computer implements DetailsPrintable, JacksonSerializable 
 
     @Override
     public String toString() {
-        return "{Make: " + make + ", Model: " + model + ", CPU: " + cpu + ", Number of Cores: " + cores + ", RAM Size (in GB): " + ramSizeInGB + "}";
+        return jacskonSerialize();
     }
 }

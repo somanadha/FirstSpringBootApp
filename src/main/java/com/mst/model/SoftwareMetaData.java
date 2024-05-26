@@ -12,10 +12,14 @@ import org.springframework.stereotype.Component;
 @Scope ("prototype")
 public class SoftwareMetaData implements DetailsPrintable, JacksonSerializable {
 
+    private String softwareID = null;
+
     @Autowired
     private Developer developer = null;
+
     @Autowired
     private Computer computer = null;
+
     @Autowired
     private Compiler compiler = null;
 
@@ -28,6 +32,14 @@ public class SoftwareMetaData implements DetailsPrintable, JacksonSerializable {
 //        this.setComputer(computer);
 //        this.setCompiler( compiler);
 //    }
+
+    public String getSoftwareID() {
+        return softwareID;
+    }
+
+    public void setSoftwareID(String softwareID) {
+        if (this.softwareID == null) this.softwareID = softwareID;
+    }
 
     public Developer getDeveloper() {
         return developer;

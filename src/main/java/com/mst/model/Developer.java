@@ -63,6 +63,6 @@ public class Developer implements DetailsPrintable, JacksonSerializable {
 
     @Override
     public String toString() {
-        return "{Name: " + name + ", Experience (in years): " + experienceInYears+ "}";
+        return jacskonSerialize();
     }
 }
