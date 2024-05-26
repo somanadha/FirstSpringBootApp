@@ -32,7 +32,7 @@ public final class Desktop extends Computer {
         String jacksonString="";
         ObjectMapper jacksonObjectMapper = new ObjectMapper();
         try {
-            jacksonObjectMapper.writeValueAsString(this);
+            jacksonString = jacksonObjectMapper.writeValueAsString(this);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }

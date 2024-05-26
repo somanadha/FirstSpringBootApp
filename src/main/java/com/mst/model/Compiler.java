@@ -56,7 +56,7 @@ public class Compiler implements DetailsPrintable, JacksonSerializable {
         String jacksonString="";
         ObjectMapper jacksonObjectMapper = new ObjectMapper();
         try {
-            jacksonObjectMapper.writeValueAsString(this);
+            jacksonString = jacksonObjectMapper.writeValueAsString(this);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }

@@ -5,13 +5,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mst.model.interfaces.DetailsPrintable;
 import com.mst.model.interfaces.JacksonSerializable;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
 @Scope ("prototype")
-public class FirstSpringBootApp implements DetailsPrintable, JacksonSerializable {
+public class SoftwareMetaData implements DetailsPrintable, JacksonSerializable {
 
     @Autowired
     private Developer developer = null;
@@ -20,13 +19,11 @@ public class FirstSpringBootApp implements DetailsPrintable, JacksonSerializable
     @Autowired
     private Compiler compiler = null;
 
-    public FirstSpringBootApp() {
+    public SoftwareMetaData() {
         // Default constructor that expects getter & setter to work for onetime
     }
 
-//    public FirstSpringBootApp(Developer developer,
-//                          @Qualifier("desktop") Computer computer,
-//                          Compiler compiler) {
+//    public SoftwareMetaData(Developer developer, @Qualifier("desktop") Computer computer,  Compiler compiler) {
 //        this.setDeveloper(developer);
 //        this.setComputer(computer);
 //        this.setCompiler( compiler);
@@ -73,7 +70,7 @@ public class FirstSpringBootApp implements DetailsPrintable, JacksonSerializable
         String jacksonString="";
         ObjectMapper jacksonObjectMapper = new ObjectMapper();
         try {
-            jacksonObjectMapper.writeValueAsString(this);
+            jacksonString = jacksonObjectMapper.writeValueAsString(this);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
