@@ -9,11 +9,17 @@ import org.springframework.stereotype.Component;
 @Component
 @Scope("prototype")
 public final class Laptop extends Computer {
-    public Laptop(@Value("Dell") String make, @Value("Inspiron") String model,
-                  @Value("Intel Core I7") String cpu,
-                  @Value("8") byte cores, @Value("16") byte ramSizeInGB) {
-        super(make, model, cpu, cores, ramSizeInGB);
+
+    public Laptop() {
+        setComputerType(ComputerType.LAPTOP);
     }
+
+//    public Laptop(@Value("Dell") String make, @Value("Inspiron") String model,
+//                 @Value("Intel Core I7") String cpu,
+//                 @Value("8") byte cores, @Value("16") byte ramSizeInGB) {
+//        super(make, model, cpu, cores, ramSizeInGB);
+//        super.setComputerType(ComputerType.LAPTOP);
+//    }
 
     @Override
     public void printDetails() {

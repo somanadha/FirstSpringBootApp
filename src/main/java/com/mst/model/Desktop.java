@@ -11,11 +11,17 @@ import org.springframework.stereotype.Component;
 @Scope("prototype")
 @Primary
 public final class Desktop extends Computer {
-    public Desktop(@Value("HP") String make, @Value ("Pavilion") String model,
-                   @Value("AMD Athlon") String cpu,
-                   @Value("16") byte cores, @Value("32") byte ramSizeInGB) {
-        super(make, model, cpu, cores, ramSizeInGB);
+
+    public Desktop() {
+        setComputerType(ComputerType.DESKTOP);
     }
+
+//    public Desktop(@Value("HP") String make, @Value ("Pavilion") String model,
+//                   @Value("AMD Athlon") String cpu,
+//                   @Value("16") byte cores, @Value("32") byte ramSizeInGB) {
+//        super(make, model, cpu, cores, ramSizeInGB);
+//        super.setComputerType(ComputerType.DESKTOP);
+//    }
 
     @Override
     public void printDetails() {

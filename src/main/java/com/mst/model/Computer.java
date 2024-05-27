@@ -1,5 +1,6 @@
 package com.mst.model;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.mst.model.interfaces.DetailsPrintable;
 import com.mst.model.interfaces.JacksonSerializable;
 import org.springframework.context.annotation.Scope;
@@ -7,8 +8,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Scope("prototype")
+@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, include = JsonTypeInfo.As.PROPERTY, property = "className")
 public abstract class Computer implements DetailsPrintable, JacksonSerializable {
 
+    public enum ComputerType {
+        NOT_DEFINED, LAPTOP, DESKTOP
+    }
+
+    private ComputerType computerType = ComputerType.NOT_DEFINED;
     private String make = null;
     private String model = null;
     private String cpu = null;
@@ -19,13 +26,21 @@ public abstract class Computer implements DetailsPrintable, JacksonSerializable 
 
     }
 
-    public Computer(String make, String model, String cpu, byte cores, byte ramSizeInGB) {
+//    public Computer(String make, String model, String cpu, byte cores, byte ramSizeInGB) {
+//
+//        this.setMake(make);
+//        this.setModel(model);
+//        this.setCpu(cpu);
+//        this.setCores(cores);
+//        this.setRamSizeInGB(ramSizeInGB);
+//    }
 
-        this.setMake(make);
-        this.setModel(model);
-        this.setCpu(cpu);
-        this.setCores(cores);
-        this.setRamSizeInGB(ramSizeInGB);
+    public ComputerType getComputerType() {
+        return computerType;
+    }
+
+    public void setComputerType(ComputerType computerType) {
+        if (this.computerType == ComputerType.NOT_DEFINED) this.computerType = computerType;
     }
 
     public String getMake() {

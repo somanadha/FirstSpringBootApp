@@ -15,13 +15,18 @@ public class SoftwareMetaDataService {
     private SoftwareMetaDataRepository repositoryService;
 
     public long getSoftwareMetaDataListCount() {
-        long softwareMetaDataListCount = 0;
-        return softwareMetaDataListCount;
+        return repositoryService.getSoftwareMetaDataListCount();
+    }
+
+    public SoftwareMetaData getSoftwareMetaData(String softwareID) {
+        return repositoryService.findOne(softwareID);
     }
 
     public  Iterable<? extends SoftwareMetaData> getSoftwareMetaDataList(int startIndex, int endIndex) {
-        ArrayList<SoftwareMetaData> SoftwareMetaDataList = null;
+        return repositoryService.findAll(startIndex, endIndex);
+    }
 
-        return SoftwareMetaDataList;
+    public void addSoftwareMetaData(String softwareID, SoftwareMetaData softwareMetaData) {
+        repositoryService.save(softwareID, softwareMetaData);
     }
 }

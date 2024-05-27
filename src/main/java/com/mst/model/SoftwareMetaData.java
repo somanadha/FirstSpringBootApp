@@ -1,10 +1,13 @@
 package com.mst.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mst.model.interfaces.DetailsPrintable;
 import com.mst.model.interfaces.JacksonSerializable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Component;
 @Scope ("prototype")
 public class SoftwareMetaData implements DetailsPrintable, JacksonSerializable {
 
+    @JsonIgnore
     private String softwareID = null;
 
     @Autowired
@@ -27,7 +31,7 @@ public class SoftwareMetaData implements DetailsPrintable, JacksonSerializable {
         // Default constructor that expects getter & setter to work for onetime
     }
 
-//    public SoftwareMetaData(Developer developer, @Qualifier("desktop") Computer computer,  Compiler compiler) {
+//    public SoftwareMetaData(Developer developer, @Qualifier("desktop") Computer computer, Compiler compiler) {
 //        this.setDeveloper(developer);
 //        this.setComputer(computer);
 //        this.setCompiler( compiler);
