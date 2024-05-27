@@ -1,20 +1,17 @@
 package com.mst.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mst.model.interfaces.DetailsPrintable;
-import com.mst.model.interfaces.JacksonSerializable;
+import com.mst.model.interfaces.JsonSerializable;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
 @Scope ("prototype")
-public class SoftwareMetaData implements DetailsPrintable, JacksonSerializable {
-
+public class SoftwareMetaData implements DetailsPrintable, JsonSerializable {
     @JsonIgnore
     private String softwareID = null;
 
@@ -31,18 +28,8 @@ public class SoftwareMetaData implements DetailsPrintable, JacksonSerializable {
         // Default constructor that expects getter & setter to work for onetime
     }
 
-//    public SoftwareMetaData(Developer developer, @Qualifier("desktop") Computer computer, Compiler compiler) {
-//        this.setDeveloper(developer);
-//        this.setComputer(computer);
-//        this.setCompiler( compiler);
-//    }
-
     public String getSoftwareID() {
         return softwareID;
-    }
-
-    public void setSoftwareID(String softwareID) {
-        if (this.softwareID == null) this.softwareID = softwareID;
     }
 
     public Developer getDeveloper() {
@@ -55,6 +42,12 @@ public class SoftwareMetaData implements DetailsPrintable, JacksonSerializable {
 
     public Compiler getCompiler() {
         return compiler;
+    }
+
+    public void setSoftwareID(String softwareID) {
+        if (this.softwareID == null) {
+            this.softwareID = softwareID;
+        }
     }
 
     public void setDeveloper(Developer developer) {
@@ -82,7 +75,7 @@ public class SoftwareMetaData implements DetailsPrintable, JacksonSerializable {
     }
 
     @Override
-    public String jacskonSerialize() {
+    public String toJsonString() {
         String jacksonString="";
         ObjectMapper jacksonObjectMapper = new ObjectMapper();
         try {
@@ -95,6 +88,6 @@ public class SoftwareMetaData implements DetailsPrintable, JacksonSerializable {
 
     @Override
     public String toString() {
-        return jacskonSerialize();
+        return toJsonString();
     }
 }

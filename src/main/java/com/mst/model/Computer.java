@@ -2,14 +2,14 @@ package com.mst.model;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.mst.model.interfaces.DetailsPrintable;
-import com.mst.model.interfaces.JacksonSerializable;
+import com.mst.model.interfaces.JsonSerializable;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
 @Scope("prototype")
 @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, include = JsonTypeInfo.As.PROPERTY, property = "className")
-public abstract class Computer implements DetailsPrintable, JacksonSerializable {
+public abstract class Computer implements DetailsPrintable, JsonSerializable {
 
     public enum ComputerType {
         NOT_DEFINED, LAPTOP, DESKTOP
@@ -25,15 +25,6 @@ public abstract class Computer implements DetailsPrintable, JacksonSerializable 
     public Computer(){
 
     }
-
-//    public Computer(String make, String model, String cpu, byte cores, byte ramSizeInGB) {
-//
-//        this.setMake(make);
-//        this.setModel(model);
-//        this.setCpu(cpu);
-//        this.setCores(cores);
-//        this.setRamSizeInGB(ramSizeInGB);
-//    }
 
     public ComputerType getComputerType() {
         return computerType;
@@ -88,6 +79,6 @@ public abstract class Computer implements DetailsPrintable, JacksonSerializable 
 
     @Override
     public String toString() {
-        return jacskonSerialize();
+        return toJsonString();
     }
 }

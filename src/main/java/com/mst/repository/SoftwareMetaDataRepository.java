@@ -23,6 +23,7 @@ public class SoftwareMetaDataRepository {
         long softwareMetaDataListCount = 0;
         return softwareMetaDataListCount;
     }
+
     public  Iterable<? extends SoftwareMetaData> findAll(int startIndex, int endIndex) {
         ArrayList<SoftwareMetaData> SoftwareMetaDataList = null;
 
@@ -47,10 +48,6 @@ public class SoftwareMetaDataRepository {
         return softwareMetaData;
     }
 
-    private void processRow(ResultSet rs) throws SQLException {
-    }
-
     public void save(String softwareID, SoftwareMetaData softwareMetaData) {
-
     }
 }

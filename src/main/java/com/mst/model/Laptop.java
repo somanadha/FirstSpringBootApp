@@ -2,7 +2,6 @@ package com.mst.model;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -14,20 +13,13 @@ public final class Laptop extends Computer {
         setComputerType(ComputerType.LAPTOP);
     }
 
-//    public Laptop(@Value("Dell") String make, @Value("Inspiron") String model,
-//                 @Value("Intel Core I7") String cpu,
-//                 @Value("8") byte cores, @Value("16") byte ramSizeInGB) {
-//        super(make, model, cpu, cores, ramSizeInGB);
-//        super.setComputerType(ComputerType.LAPTOP);
-//    }
-
     @Override
     public void printDetails() {
         System.out.println("Laptop: " + toString());
     }
 
     @Override
-    public String jacskonSerialize() {
+    public String toJsonString() {
         String jacksonString="";
         ObjectMapper jacksonObjectMapper = new ObjectMapper();
         try {
@@ -40,6 +32,6 @@ public final class Laptop extends Computer {
 
     @Override
     public String toString() {
-        return jacskonSerialize();
+        return toJsonString();
     }
 }

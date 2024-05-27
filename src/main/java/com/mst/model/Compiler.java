@@ -3,35 +3,32 @@ package com.mst.model;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mst.model.interfaces.DetailsPrintable;
-import com.mst.model.interfaces.JacksonSerializable;
+import com.mst.model.interfaces.JsonSerializable;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
 @Scope("prototype")
-public class Compiler implements DetailsPrintable, JacksonSerializable {
-    @Value("CPP")
-    private String language = null;
+public class Compiler implements DetailsPrintable, JsonSerializable {
 
-    @Value("23.0.0")
+    public enum Language {
+        None, Java, CSharp, CPP, Python, JavaScript;
+    }
+
+    private Language language = Language.None;
     private String version = null;
 
     public Compiler() {
 
     }
 
-    public Compiler(String language, String version) {
-        this.setLanguage(language);
-        this.setVersion(version);
-    }
-
-    public String getLanguage() {
+    public Language getLanguage() {
         return language;
     }
 
-    public void setLanguage(String language) {
-        if (this.language == null) {
+    public void setLanguage(Language language) {
+        if (this.language == Language.None) {
             this.language = language;
         }
     }
@@ -52,7 +49,7 @@ public class Compiler implements DetailsPrintable, JacksonSerializable {
     }
 
     @Override
-    public String jacskonSerialize() {
+    public String toJsonString() {
         String jacksonString="";
         ObjectMapper jacksonObjectMapper = new ObjectMapper();
         try {
@@ -65,6 +62,6 @@ public class Compiler implements DetailsPrintable, JacksonSerializable {
 
     @Override
     public String toString() {
-        return jacskonSerialize();
+        return toJsonString();
     }
 }
